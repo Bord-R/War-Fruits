@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cv2gkocyf6dl6"]
+[gd_scene load_steps=12 format=3 uid="uid://cv2gkocyf6dl6"]
 
 [ext_resource type="Texture2D" uid="uid://cwb7ivfb6i74u" path="res://Characters/Sprites/pistols/bullets/Sprite-Bullet-StaffBlue.png" id="1_3wgcp"]
+[ext_resource type="Script" uid="uid://dgeuqty8b0wbh" path="res://Characters/Scripts/Weapons_scripts/Bullets_Components/Super_Components/poison_area.gd" id="1_sgwo4"]
 [ext_resource type="Texture2D" uid="uid://8f61f6apd16h" path="res://Characters/Sprites/pistols/bullets/bullet_effects/Sprite-effect_green.png" id="1_wrfu1"]
 [ext_resource type="Script" uid="uid://dsr2bvynqhw71" path="res://Characters/Scripts/Weapons_scripts/Bullets_Components/Create_effect.gd" id="2_c70km"]
 [ext_resource type="PackedScene" uid="uid://cbmb8ktxwttr2" path="res://Characters/cines/poison_effect.tscn" id="3_3wgcp"]
@@ -39,7 +40,7 @@ color_ramp = SubResource("GradientTexture1D_s8g1p")
 
 [node name="PoisonArea" type="Area2D"]
 z_index = 2
-position = Vector2(0, -1)
+script = ExtResource("1_sgwo4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1ma4c")
