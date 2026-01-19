@@ -41,6 +41,9 @@ color_ramp = SubResource("GradientTexture1D_s8g1p")
 [node name="PoisonArea" type="Area2D"]
 z_index = 2
 script = ExtResource("1_sgwo4")
+Init_Damage = 1.5
+Poits_Acresim = 75.0
+Super_Acresim = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1ma4c")
