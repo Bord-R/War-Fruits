@@ -124,5 +124,5 @@ script = ExtResource("7_sw3sb")
 Effect = ExtResource("8_qe820")
 IsScriptEffect = true
 HitBox = NodePath("..")
-Quantity_Spikes = 8
+Quantity_Spikes = 9
 metadata/_custom_type_script = "uid://dsr2bvynqhw71"
