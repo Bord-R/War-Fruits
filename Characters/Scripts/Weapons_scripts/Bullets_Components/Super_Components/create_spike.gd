@@ -11,6 +11,9 @@ class_name CreateSpike #criando classe para ser usado como node
 #minha quantidade maxima de espinhos
 var MAX_SPIKES : int = 4
 
+#variação do raio do filho
+var Mod_Radius : float = 1.5
+
 #contador
 var Count : int = 1
 
@@ -19,9 +22,11 @@ var Count : int = 1
 #region Methods
 
 #método que rodara quando eu for carregado
-func _init(_qtd_spikes : int, _scene_spike : PackedScene):
+func _init(_qtd_spikes : int, _scene_spike : PackedScene, _m_radius : float):
 	
 	MAX_SPIKES = _qtd_spikes #minha quantidade de espinhos é igual a qtd spikes
+
+	Mod_Radius = _m_radius #valor usado para modificar o raio do espinho
 
 	Spike = _scene_spike #meu espinho é igual a _scene_spike
 
@@ -48,6 +53,12 @@ func _ready():
 		#conecto o sinal ao método
 		VM.Conected_Signals(_create_spike.isdead, on_dead_child)
 
+		#SE _spikes for par, mudo o valor do raio da instancia spike
+		if _spikes % 2: _create_spike.Radius *= Mod_Radius
+
+		#uso método da instancia para animar ela
+		_create_spike.Interpolate_Radius(1.5, _create_spike.Radius)
+
 ################################################################################
 
 #endregion
@@ -60,7 +71,7 @@ func on_dead_child():
 	#SE o contador for igual a quantidade maxima de espinhos
 	if Count == MAX_SPIKES:
 		
-		#posso criar uma nova area novamente
+		#posso criar novos espinhos novamente
 		Game.Is_CreateSpike = true
 
 		queue_free() #me deleto

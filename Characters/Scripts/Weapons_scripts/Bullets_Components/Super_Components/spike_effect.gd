@@ -39,7 +39,7 @@ var Angle : float = 0.0
 var Vel : float = 2.0
 
 #raio do circulo
-var Radius : float = 50.0
+var Radius : float = 40.0
 
 #angulo somado
 var Summed_Angle : float = 0.0
@@ -51,7 +51,10 @@ var Mov_Postion : Vector2 = Vector2.ZERO
 var Player_Postion : Vector2 = Vector2.ZERO
 
 #vida
-var Life : int = 2
+var Life : int = 1
+
+#tween que interpolara meu raio
+var Radius_Tween : Tween
 
 #endregion
 
@@ -60,27 +63,28 @@ var Life : int = 2
 #método que rodara quando eu estiver carregado
 func _ready():
 
-	#SE meu node pai for da classe fruitscharacter
-	if get_parent() is FruitsCharacter:Player = get_parent() #meu player é igual a esse pai
+    #SE meu node pai for da classe fruitscharacter
+    if get_parent() is FruitsCharacter:Player = get_parent() #meu player é igual a esse pai
 
-	else: queue_free() #SE NÃO, eu me deleto
+    else: queue_free() #SE NÃO, eu me deleto
 
-	Camera = Player.Screen_shake #camera igual a camera do player
+    Camera = Player.Screen_shake #camera igual a camera do player
 
-	#conecto o sinal ao método
-	VM.Conected_Signals(HitBox.area_entered, HitBox_On)
+    #conecto o sinal ao método
+    VM.Conected_Signals(HitBox.area_entered, HitBox_On)
 
 ################################################################################
 
 #método que rodara a cada frame
 func _physics_process(_delta: float) -> void:
-	
-	if Game.Player_Dead: #SE o player estiver morto
-		Anim.play("destroy") #toco destroy
-		return #retorna
 
-	#movimento circular
-	CircleMoviment(_delta)
+    if Game.Player_Dead: #SE o player estiver morto
+        Anim.play("destroy") #toco destroy
+        Game.Is_CreateSpike = true #posso criar novos espinhos
+        return #retorna
+
+    #movimento circular
+    CircleMoviment(_delta)
 
 ################################################################################
 
@@ -91,83 +95,103 @@ func _physics_process(_delta: float) -> void:
 #método que fara eu fazer o movimento circular
 func CircleMoviment(_value):# _value / valor /
 
-	#SE o angulo for maior que uma volta completa 
-	if Angle > TAU:
+    #SE o angulo for maior que uma volta completa
+    if Angle > TAU:
 
-		#zero o angulo
-		Angle = 0
+        #zero o angulo
+        Angle = 0
 
-		return #retorna
+        return #retorna
 
-	Angle += (_value * Vel) #o angulo é somado a _value multiplicado pela velocidade  
+    Angle += (_value * Vel) #o angulo é somado a _value multiplicado pela velocidade
 
-	#calculando a posição em movimento /seno e cosseno do angulo mais o angulo a ser somado respectivamente, tudo multiplicado pelo raio/
-	Mov_Postion = Vector2(sin(Angle + Summed_Angle), cos(Angle + Summed_Angle)) * Radius
+    #calculando a posição em movimento /seno e cosseno do angulo mais o angulo a ser somado respectivamente, tudo multiplicado pelo raio/
+    Mov_Postion = Vector2(sin(Angle + Summed_Angle), cos(Angle + Summed_Angle)) * Radius
 
-	#calculo a posição do player
-	if Player: Player_Postion = Player.global_position
+    #calculo a posição do player
+    if Player: Player_Postion = Player.global_position
 
-	#minha posição global é igual a posição em movimento mais a posição do player
-	global_position = Player_Postion + Mov_Postion
+    #minha posição global é igual a posição em movimento mais a posição do player
+    global_position = Player_Postion + Mov_Postion
 
-	#region Effects
+    #region Effects
 
-	#defino o intervalo que meu grau de rotação vai poder ter
-	rotation_degrees = wrap(rotation_degrees, 0, 360)
+    #defino o intervalo que meu grau de rotação vai poder ter
+    rotation_degrees = wrap(rotation_degrees, 0, 360)
 
-	#SE meu grau de rotação for maior que 270 E menor que 90
-	if rotation_degrees < 270 and rotation_degrees > 90:
+    #SE meu grau de rotação for maior que 270 E menor que 90
+    if rotation_degrees < 270 and rotation_degrees > 90:
 
-		MyTexture.flip_v = true #meu flip vertical é ativado
+        MyTexture.flip_v = true #meu flip vertical é ativado
 
-	else: MyTexture.flip_v = false #SE NÃO, ele é desativado
+    else: MyTexture.flip_v = false #SE NÃO, ele é desativado
 
-	look_at(Player_Postion) #giro na direção do player
+    look_at(Player_Postion) #giro na direção do player
 
-	#endregion
+    #endregion
 
 ################################################################################
 
 #método que ira rodar quando o sinal area_entered for emitido
 func HitBox_On(_area : Area2D):
 
-	#SE o pai de _area for um enemiefruits
-	if _area.get_parent() is EnemiesFruits:
-		
-		#SE o estado atual do inimigo for hit, retorna
-		if _area.get_parent().Maquina_estados.Estado_Atual is EstadoHit: return
+    #SE o pai de _area for um enemiefruits
+    if _area.get_parent() is EnemiesFruits:
 
-		#crio variaveis locais para facilitar as chamadas
-		var _enemy : EnemiesFruits = _area.get_parent() #inimigo
-		var _mc_state_enemy : MaquinaEstados = _enemy.Maquina_estados #state machine
+        #SE o estado atual do inimigo for hit, retorna
+        if _area.get_parent().Maquina_estados.Estado_Atual is EstadoHit: return
 
-		Camera.trigger_shake(SHAKE) #tremo a tela
+        #crio variaveis locais para facilitar as chamadas
+        var _enemy : EnemiesFruits = _area.get_parent() #inimigo
+        var _mc_state_enemy : MaquinaEstados = _enemy.Maquina_estados #state machine
 
-		_enemy.Enemie_life -= DAMAGE #aplico o dano
+        Camera.trigger_shake(SHAKE) #tremo a tela
 
-		_mc_state_enemy.Troca_Estado("estadohit") #troco o estado 
+        _enemy.Enemie_life -= DAMAGE #aplico o dano
 
-		#mudo o valor variaveis do estado inimigo recem iniciado
-		_mc_state_enemy.Meus_Estados["estadohit"].Knock_dir = global_position #direção do knockback
-		_mc_state_enemy.Meus_Estados["estadohit"].Knock_vel = KNOCKBACK #velocidade do knockback
+        _mc_state_enemy.Troca_Estado("estadohit") #troco o estado
 
-		#SE a vida do inimigo for menor ou igual a 0
-		if _enemy.Enemie_life <= 0:
+        #mudo o valor variaveis do estado inimigo recem iniciado
+        _mc_state_enemy.Meus_Estados["estadohit"].Knock_dir = global_position #direção do knockback
+        _mc_state_enemy.Meus_Estados["estadohit"].Knock_vel = KNOCKBACK #velocidade do knockback
 
-			#mudo a quantidade de pontos que ele dara comforme minhas variaveis
-			_mc_state_enemy.Meus_Estados["estadomorto"].Quantity_Points = Points #pontos
-			_mc_state_enemy.Meus_Estados["estadomorto"].Quantity_Super = Points_Super # pontos de super
+        #SE a vida do inimigo for menor ou igual a 0
+        if _enemy.Enemie_life <= 0:
 
-		if Life > 0: #SE a vida for maior que 0
-			Anim.play("hit") #rodo hit
-			Life -= 1 #perco um de vida
+            #mudo a quantidade de pontos que ele dara comforme minhas variaveis
+            _mc_state_enemy.Meus_Estados["estadomorto"].Quantity_Points = Points #pontos
+            _mc_state_enemy.Meus_Estados["estadomorto"].Quantity_Super = Points_Super # pontos de super
 
-		#SE NÃO, SE a vida for igual ou menor que 0
-		elif Life <= 0:
-			
-			Anim.play("destroy") #toco destroy
-			
-			isdead.emit() #emito o sinal que falara para meu pai que eu morri
+        if Life > 0: #SE a vida for maior que 0
+            Anim.play("hit") #rodo hit
+            Life -= 1 #perco um de vida
+
+        #SE NÃO, SE a vida for igual ou menor que 0
+        elif Life <= 0:
+
+            Anim.play("destroy") #toco destroy
+
+            isdead.emit() #emito o sinal que falara para meu pai que eu morri
+
+################################################################################
+
+#método que interpolara meu raio
+func Interpolate_Radius(_time, _max_radius): # / _tempo / _raio_maximo/
+
+    if Radius_Tween: Radius_Tween.kill() #SE esse tweem existe, eu deleto ele
+
+    Radius_Tween = create_tween().bind_node(self) #crio tween e conecto ele a mim 
+
+    #definindo o tipo de transição
+    Radius_Tween.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
+    Radius_Tween.set_loops(-1) #animação rodara em loop
+
+    #raio contrai
+    Radius_Tween.tween_property(self,"Radius", _max_radius/1.5, _time)
+
+    #raio expande
+    Radius_Tween.tween_property(self,"Radius", _max_radius, _time)
 
 ################################################################################
 

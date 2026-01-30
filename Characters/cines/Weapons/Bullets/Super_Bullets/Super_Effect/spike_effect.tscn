@@ -101,7 +101,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.23333333, 0.36666667, 0.46666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.5, 2), Vector2(1.2, 0.8), Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
+"values": [Vector2(0.7, 1.3), Vector2(1.3, 0.7), Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
 }
 tracks/3/type = "method"
 tracks/3/imported = false
@@ -152,10 +152,10 @@ tracks/2/path = NodePath(".:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.16666667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.5, 1.5), Vector2(1.2, 0.6), Vector2(1, 1)]
+"values": [Vector2(0.7, 1.3), Vector2(1.3, 0.7), Vector2(1, 1), Vector2(0.7, 1.3), Vector2(1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -164,7 +164,7 @@ tracks/3/path = NodePath(".:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.0001, 0.13333334, 0.2),
+"times": PackedFloat32Array(0.0001, 0.16666667, 0.23333333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(-8, 0), Vector2(-30, 0), Vector2(-15, 0)]
@@ -207,7 +207,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.16666667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(2, 0.5), Vector2(0.8, 1.5), Vector2(1, 1)]
+"values": [Vector2(1.3, 0.7), Vector2(0.7, 1.3), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lrlkm"]

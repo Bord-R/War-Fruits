@@ -41,6 +41,12 @@ func _ready(): #método que começara quando eu estiver pronto
 
 ################################################################################
 
+func _process(_delta):
+	
+	if Game.Player_Dead: Swap_Anim("end")
+
+################################################################################
+
 #endregion
 
 #region My Methods

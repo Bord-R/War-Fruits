@@ -1,7 +1,7 @@
 extends Node
 
 #criando classe para ser usado como node
-class_name CreateEffect #craindo efeito
+class_name CreateEffect #criando efeito
 
 #region Variables
 
@@ -18,7 +18,7 @@ class_name CreateEffect #craindo efeito
 
 @export var Quantity_Spikes : int = 4
 
-
+@export var Mod_Radius_Spikes : float = 1.0
 
 #endregion
 
@@ -81,11 +81,11 @@ func AreaCreate():
 	#SE NÃO, SE eu tenho um efeito, podendo fazer via class.new E poder criar uma nova area
 	elif Effect and IsScriptEffect and Game.Is_CreateSpike:
 
-		var _new_Effect_Script = CreateSpike.new(Quantity_Spikes, Effect) #instancio um createspike com seu dados ja configurados
+		var _new_Effect_Script = CreateSpike.new(Quantity_Spikes, Effect, Mod_Radius_Spikes) #instancio um createspike com seu dados ja configurados
 
 		get_parent().MyPlayer.add_child(_new_Effect_Script) #adiciono como filho do player
 
-		Game.Is_CreateSpike = false #não posso criar uma area
+		Game.Is_CreateSpike = false #não posso criar espinhos
 
 ################################################################################
 

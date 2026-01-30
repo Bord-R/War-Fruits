@@ -57,7 +57,7 @@ var Vel_Active : bool = false
 #boleano que ativara a invensibilidade
 var Invincible_Active : bool = false
 
-#boleano que vera se eu posso criar uma nova area
+#boleano que vera se eu posso criar espinhos
 var Is_CreateSpike : bool = true
 
 #meu modo de jogo atual

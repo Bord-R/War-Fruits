@@ -102,13 +102,13 @@ const MIN_DROP_VEL : float = 0.2
 const MINOS_SUPER : float = 0.05
 
 #escala horizontal modificada
-const XMOD_SCALE : float = 0.2
+const XMOD_SCALE : float = 0.7
 
 #escala vertical modificada
-const YMOD_SCALE : float = 2.0
+const YMOD_SCALE : float = 1.3
 
 #tempo do tween do método effect pistol
-const SEG_TWEEN : float = 0.25
+const SEG_TWEEN : float = 0.1
 
 #endregion
 

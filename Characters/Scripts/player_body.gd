@@ -377,7 +377,7 @@ func BackGroud_Tween():
 	Tween_Backfade.bind_node(self)
 
 	#faço o backgroud fake ficar transparente
-	Tween_Backfade.tween_property(BackGroud_Fake,"modulate", Color.TRANSPARENT,0.25)
+	Tween_Backfade.tween_property(BackGroud_Fake,"modulate", Color.TRANSPARENT,0.2)
 
 	#ESPERE ATÉ QUE esse tween acabe
 	await Tween_Backfade.finished
