@@ -86,7 +86,7 @@ position = Vector2(0, -4)
 script = ExtResource("1_bqwfp")
 Bullet = ExtResource("2_hsps5")
 Super_Bullet = ExtResource("3_vubra")
-Buff_Super = 1.25
+Buff_Super = 2.0
 Variant_Curve = Dictionary[String, float]({
 "Max_Curve": 0.5,
 "Min_Curve": -0.4

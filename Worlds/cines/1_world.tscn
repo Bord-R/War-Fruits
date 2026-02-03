@@ -52,9 +52,10 @@ adjustment_saturation = 1.2
 [node name="1World" type="Node2D"]
 y_sort_enabled = true
 
-[node name="MyCamera" type="Camera2D" parent="."]
+[node name="MyCamera" type="Camera2D" parent="." node_paths=PackedStringArray("Player")]
 position_smoothing_enabled = true
 script = ExtResource("2_7jtqy")
+Player = NodePath("../Characters/Player_body")
 metadata/_custom_type_script = "uid://bmo70jsanelwe"
 
 [node name="Mapa" type="Node2D" parent="."]
@@ -127,13 +128,11 @@ position = Vector2(-613, 413)
 position = Vector2(963.8259, 112.22038)
 
 [node name="BarLife" parent="Characters/Enemies/Maça" node_paths=PackedStringArray("Daddy") instance=ExtResource("5_80os3")]
-offset_left = -38.97908
+offset_left = -37.23995
 offset_top = -41.93077
-offset_right = 36.02092
+offset_right = 37.76005
 offset_bottom = -36.93077
 theme_override_styles/background = SubResource("StyleBoxFlat_mlg53")
-max_value = 20.0
-value = 20.0
 Daddy = NodePath("..")
 
 [node name="Pistols" type="Node" parent="Characters"]

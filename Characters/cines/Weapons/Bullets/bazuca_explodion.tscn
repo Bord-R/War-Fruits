@@ -166,6 +166,7 @@ _data = {
 
 [node name="Bala" type="Area2D" node_paths=PackedStringArray("texture", "Anim")]
 script = ExtResource("1_rtecb")
+Shake_Force = 5.0
 texture = NodePath("Sprite2D")
 Anim = NodePath("AnimationPlayer")
 Points_Acresim = 50

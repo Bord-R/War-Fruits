@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0if04joxed7"]
+[gd_scene load_steps=9 format=3 uid="uid://c0if04joxed7"]
 
 [ext_resource type="Script" uid="uid://pwdernxgceuy" path="res://Worlds/Scripts/game.gd" id="1_33xom"]
 [ext_resource type="PackedScene" uid="uid://cj0a62p7vekax" path="res://Worlds/cines/menu.tscn" id="2_lpukx"]
@@ -12,6 +12,42 @@ shader = ExtResource("4_lpukx")
 shader_parameter/Reducao = 0.2
 shader_parameter/escuridao = Color(0.039215688, 0.07058824, 0.13725491, 1)
 shader_parameter/Varicao = 0.499999988824
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mlg53"]
+resource_local_to_scene = true
+bg_color = Color(0.34765625, 0.01628526, 0.22250584, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.16796875, 0.030626265, 0.13186091, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="Environment" id="Environment_x0rne"]
+resource_local_to_scene = true
+background_mode = 3
+background_canvas_max_layer = 3
+sky_rotation = Vector3(0, 0.49218285, 0)
+ambient_light_sky_contribution = 0.0
+tonemap_mode = 1
+tonemap_exposure = 0.32
+tonemap_white = 0.8
+sdfgi_bounce_feedback = 0.88
+sdfgi_normal_bias = 2.0
+glow_enabled = true
+glow_intensity = 0.3
+glow_bloom = 1.0
+glow_hdr_scale = 0.2
+glow_hdr_luminance_cap = 4.0
+fog_depth_curve = 3.605001
+fog_depth_begin = 373.6
+fog_depth_end = 373.6
+adjustment_enabled = true
+adjustment_brightness = 0.8
+adjustment_saturation = 1.2
 
 [node name="Game" type="Node" node_paths=PackedStringArray("Menu", "P_World", "Options", "Start", "Option", "Quit", "Return_menu")]
 script = ExtResource("1_33xom")
@@ -32,6 +68,12 @@ material = SubResource("ShaderMaterial_x0rne")
 [node name="1World" parent="." instance=ExtResource("3_x0rne")]
 process_mode = 4
 visible = false
+
+[node name="BarLife" parent="1World/Characters/Enemies/Maça" index="7"]
+theme_override_styles/background = SubResource("StyleBoxFlat_mlg53")
+
+[node name="WorldEnvironment" parent="1World" index="4"]
+environment = SubResource("Environment_x0rne")
 
 [node name="Opções" parent="." instance=ExtResource("5_x0rne")]
 visible = false

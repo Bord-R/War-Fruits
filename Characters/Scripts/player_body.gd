@@ -1,4 +1,6 @@
-extends FruitsCharacter
+extends CharacterBody2D
+
+class_name FruitsCharacter
 
 #region Variables
 
@@ -86,6 +88,15 @@ var Possui_arma : bool = false
 
 #tela de game over
 @export var Game_Over_Screen : Node2D
+
+#vida do jogador
+var Player_life : int = 0
+
+#velocidade
+var vel : float = 0
+
+#direção
+var direction : Vector2 = Vector2.ZERO
 
 #velocidade maxima
 var VEL_MAX : float = NORMAL_MAX_VEL

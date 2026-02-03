@@ -6,7 +6,7 @@ class_name MyCamera #minha camera
 #region Variables
 
 #player
-@onready var Player = owner.get_node("%Player_body")
+@export var Player : FruitsCharacter
 
 #minha redução 
 const REDUCAO : float = 0.5
@@ -29,7 +29,7 @@ var max_shake : float
 var shake_fade : float = 10.0
 
 #força do chocalho
-var _shake_strength : float = 0.0
+var shake_strength : float = 0.0
 
 #endregion
 
@@ -60,14 +60,14 @@ func _process(delta: float) -> void:
 	
 	#fazendo o screen shake 
 	#SE a força do chocalho for maior que 0
-	if _shake_strength > 0:
+	if shake_strength > 0:
 
 		#a força do chocalho cai até chegar em 0
-		_shake_strength = lerp(_shake_strength,0.0,shake_fade * delta)
+		shake_strength = lerp(shake_strength, 0.0, shake_fade * delta)
 
 		#meu desvio faz eu tremer
-		offset = Vector2(randf_range(-_shake_strength,_shake_strength), randf_range(-_shake_strength,_shake_strength))
-
+		offset = Vector2(randf_range(-shake_strength, shake_strength), randf_range(-shake_strength, shake_strength))
+			
 ################################################################################
 
 #endregion
@@ -81,7 +81,7 @@ func trigger_shake(_max_value): # _max_value : valor maximo
 	max_shake = _max_value
 	
 	#a força do chocalho é igual ao meu chocalho maximo
-	_shake_strength = max_shake
+	shake_strength = max_shake
 
 ################################################################################
 

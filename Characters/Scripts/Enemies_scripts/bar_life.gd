@@ -7,6 +7,12 @@ extends ProgressBar
 
 var Tween_Life : Tween #tween
 
+@export var Init_Life : int :
+	set(_new_value):
+		if Daddy: _new_value = Daddy.Enemie_life
+		max_value = _new_value
+		value = max_value
+
 #endregion
 
 #region Methods

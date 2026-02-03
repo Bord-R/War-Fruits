@@ -166,7 +166,7 @@ func _process(_delta: float) -> void:
 func Life_HUD():
 
 	#método que mudara minha transparencia quando o mouse chegar perto
-	Transparent_Dist_Mouse(Life)
+	Transparent_In_Combat(Life)
 
 	#SE a vida for menor ou igual que 0, eu reinicio o game
 	if Player.Player_life <= 0.0:
@@ -235,7 +235,7 @@ func Animated_Life():
 func Points_HUD():
 	
 	#método que fara eu ficar transparente quando o mouse chegar perto de mim
-	Transparent_Dist_Mouse(Points)
+	Transparent_In_Combat(Points)
 
 	#modificando o texto da pontuacao para ele ser igual a coin bonus
 	Pontucao.text = str(Game.Coin_Bonus)
@@ -279,17 +279,14 @@ func Dead_Player_Commands():
 
 ################################################################################
 
-#método que fara meus filhos ficarem semi transparentes ao passarem perto do mouse
-func Transparent_Dist_Mouse(_node : Sprite2D):
+#método que fara meus filhos ficarem semi transparentes quando o player estiver em combate
+func Transparent_In_Combat(_node : Sprite2D):
 	
-	#pegando a distancia de _node até o local do mouse
-	dist_mouse = _node.global_position.distance_to(_node.get_global_mouse_position())
-
 	#crio um tween local que mudara minha transparencia
 	var _tween_alpha : Tween = null
 
-	#SE a distancia do mouse for maior ou igual que a distancia minima
-	if dist_mouse >= MIN_MOUSE_DIST:
+	#SE eu Não apertar o botão esquerdo e direito do mouse ou o player não ter arma
+	if  !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and !Input.is_key_label_pressed(KEY_SPACE) or !Player.Possui_arma:
 		
 		if _tween_alpha: _tween_alpha.kill() #SE esse tween existe, eu deleto ele
 

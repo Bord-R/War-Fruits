@@ -36,7 +36,7 @@ const DANOALTO = 5.0
 @export var Super_Acresim : int = 1
 
 #Screen shake (efeito de camera)
-@export var Screen_shake : Node
+@export var Screen_shake : MyCamera
 
 #minha velocidade
 @export var Vel : float 

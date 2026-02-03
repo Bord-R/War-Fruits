@@ -5,7 +5,7 @@ extends Area2D
 #dano inicial
 @export var Init_Damage : int = 0
 
-@export var Poits_Acresim : float = 0.0 # pontos a acresentar
+@export var Points_Acresim : float = 0.0 # pontos a acresentar
 
 @export var Super_Acresim : int = 0 #pontos de super a acresentar
 
@@ -15,6 +15,9 @@ extends Area2D
 
 #tempo de vida
 const TIME_LIFE : float = 30.0
+
+#enpurrão que do no inimigo
+const KNOCK_ENEMY : float = 2.5
 
 var My_Timer : Timer = Timer.new() #meu timer
 
@@ -63,18 +66,13 @@ func Enemie_Collided(_area): # /area/
 		#SE o inimigo que eu colidi estiver no estado morto retorna
 		if _Enemy_Col.Maquina_estados.Estado_Atual is EstadoMorto: return
 
-		#diminuo a vida dele
-		_Enemy_Col.Enemie_life -= Init_Damage
-
-		#troco o estado dele para o estado hit
-		_Enemy_Col.Maquina_estados.Troca_Estado("estadohit")
-
-		#SE o estado morto for um dos estados dele 
-		if Stt_Dead in _Enemy_Col.Maquina_estados.Meus_Estados:
-			
-			#mudo a pontuação ao mata-lo
-			_Enemy_Col.Maquina_estados.Meus_Estados[Stt_Dead].Quantity_Points = Poits_Acresim
-			_Enemy_Col.Maquina_estados.Meus_Estados[Stt_Dead].Quantity_Super = Super_Acresim
+		_Enemy_Col.Take_Damaged( #método que fara o inimigo tomar dano
+			Init_Damage,
+			global_position,
+			KNOCK_ENEMY,
+			Super_Acresim,
+			Points_Acresim
+		)
 
 ################################################################################
 
