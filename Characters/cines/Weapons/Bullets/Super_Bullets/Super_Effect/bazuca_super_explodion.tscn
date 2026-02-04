@@ -118,7 +118,7 @@ _data = {
 
 [node name="BazucaSuperExplodion" type="Area2D" node_paths=PackedStringArray("texture", "Anim")]
 script = ExtResource("1_12irw")
-Shake_Force = 100.0
+Shake_Force = 60.0
 texture = NodePath("Sprite2D")
 Anim = NodePath("AnimationPlayer")
 Points_Acresim = 250

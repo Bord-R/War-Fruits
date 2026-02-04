@@ -134,6 +134,7 @@ offset_right = 37.76005
 offset_bottom = -36.93077
 theme_override_styles/background = SubResource("StyleBoxFlat_mlg53")
 Daddy = NodePath("..")
+Init_Life = 20
 
 [node name="Pistols" type="Node" parent="Characters"]
 
