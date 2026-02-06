@@ -3,9 +3,9 @@ extends ProgressBar
 
 #region Variables
 
-@export var Daddy : EnemiesFruits #meu pai
+@export var Daddy : EnemiesFruits = null #meu pai
 
-var Tween_Life : Tween #tween
+var Tween_Life : Tween = null #tween
 
 @export var Init_Life : int : #definindo essa variavel como uma do tipo setter (definida)
 	set(_new_value): #toda vez que seu valor for alterado
