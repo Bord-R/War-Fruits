@@ -177,8 +177,8 @@ rotation = 1.5707964
 texture = ExtResource("3_1m2wv")
 
 [node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
-position = Vector2(0, -0.355335)
-scale = Vector2(1, 1.5541602)
+position = Vector2(0, -1.4210855e-14)
+scale = Vector2(0.8, 1.5)
 color = Color(0.96052986, 1, 0.6604482, 0.47843137)
 energy = 0.7
 texture = ExtResource("5_k5ige")

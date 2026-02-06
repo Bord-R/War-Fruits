@@ -7,11 +7,10 @@ extends ProgressBar
 
 var Tween_Life : Tween #tween
 
-@export var Init_Life : int :
-	set(_new_value):
-		if Daddy: _new_value = Daddy.Enemie_life
-		max_value = _new_value
-		value = max_value
+@export var Init_Life : int : #definindo essa variavel como uma do tipo setter (definida)
+	set(_new_value): #toda vez que seu valor for alterado
+		max_value = _new_value #faço o valor maximo ser igual a new value
+		value = max_value #meu valor é igual ao valor maximo
 
 #endregion
 
@@ -39,6 +38,21 @@ func Update_Life():
 
 	#interpolo a vida do player
 	Tween_Life.tween_property(self, "value", Daddy.Enemie_life, .25)
+
+	if Daddy.Enemie_life <= 0:
+				
+		#SE esse tween existe eu deleto ele
+		if Tween_Life: Tween_Life.kill()
+
+		#instancio ele e conecto a mim
+		Tween_Life = create_tween().bind_node(self)
+
+		#fico transparente
+		Tween_Life.tween_property(self, "modulate", Color.TRANSPARENT, .25)
+		
+		await Tween_Life.finished #ESPERE até que a animação acabe
+
+		queue_free() #me deleto
 
 ################################################################################
 

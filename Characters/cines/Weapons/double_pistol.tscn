@@ -82,7 +82,6 @@ size = Vector2(29, 9)
 
 [node name="Double_pistol" type="CharacterBody2D" node_paths=PackedStringArray("Anim", "Collision", "Ray", "Area", "Marker")]
 z_index = 2
-position = Vector2(0, -4)
 script = ExtResource("1_bqwfp")
 Bullet = ExtResource("2_hsps5")
 Super_Bullet = ExtResource("3_vubra")

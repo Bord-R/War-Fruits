@@ -95,32 +95,17 @@ func Poison_Damage():
 		#SE NÃO
 		else:
 			
-			#SE o estado do inimigo NÃO for igual ao estado morto
-			if (Meu_Ospedero.Maquina_estados.Estado_Atual != 
-				Meu_Ospedero.Maquina_estados.Meus_Estados["estadomorto"]):
-				
-				#meu inimigo perde vida
-				Meu_Ospedero.Enemie_life -= DANO
-				
-				#ativando o estado de hit no inimigo
-				Meu_Ospedero.Maquina_estados.Troca_Estado("estadohit")
-				
-				#mudando a velocidade de knockback do estado de hit
-				Meu_Ospedero.Maquina_estados.Meus_Estados["estadohit"].Knock_vel = 0
-				
-				#meu inntervalo volta a ter seu valor original
-				Time_Damage = MAX_TIME_DAMAGE
+			#dando dano no inimigo
+			Meu_Ospedero.Take_Damaged(
+				DANO,
+				Vector2.ZERO,
+				0.0,
+				Acresim_Super,
+				Acresim_Points
+			)
 			
-			#SE a vida do inimigo for menor ou igual que 0
-			if Meu_Ospedero.Enemie_life <= 0.0:
-				#SE ele tiver o estado morto
-				if Ene_Dead in Meu_Ospedero.Maquina_estados.Meus_Estados:
-					
-					#modifico a quantidade de pontos que o inimigo dara
-					Meu_Ospedero.Maquina_estados.Meus_Estados[Ene_Dead].Quantity_Points = Acresim_Points
-					
-					#odifico a quantidade de pontos de super do inimigo 
-					Meu_Ospedero.Maquina_estados.Meus_Estados[Ene_Dead].Quantity_Super = Acresim_Super
+			#reiniciando o timer
+			Time_Damage = MAX_TIME_DAMAGE
 
 ################################################################################
 
