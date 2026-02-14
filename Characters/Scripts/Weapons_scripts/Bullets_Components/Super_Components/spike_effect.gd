@@ -83,8 +83,8 @@ func _physics_process(_delta: float) -> void:
         Game.Is_CreateSpike = true #posso criar novos espinhos
         return #retorna
 
-    #movimento circular
-    CircleMoviment(_delta)
+    #giro circular
+    SpinMoviment()
 
 ################################################################################
 
@@ -93,28 +93,7 @@ func _physics_process(_delta: float) -> void:
 #region My Methods
 
 #método que fara eu fazer o movimento circular
-func CircleMoviment(_value):# _value / valor /
-
-    #SE o angulo for maior que uma volta completa
-    if Angle > TAU:
-
-        #zero o angulo
-        Angle = 0
-
-        return #retorna
-
-    Angle += (_value * Vel) #o angulo é somado a _value multiplicado pela velocidade
-
-    #calculando a posição em movimento /seno e cosseno do angulo mais o angulo a ser somado respectivamente, tudo multiplicado pelo raio/
-    Mov_Postion = Vector2(sin(Angle + Summed_Angle), cos(Angle + Summed_Angle)) * Radius
-
-    #calculo a posição do player
-    if Player: Player_Postion = Player.global_position
-
-    #minha posição global é igual a posição em movimento mais a posição do player
-    global_position = Player_Postion + Mov_Postion
-
-    #region Effects
+func SpinMoviment():
 
     #defino o intervalo que meu grau de rotação vai poder ter
     rotation_degrees = wrap(rotation_degrees, 0, 360)
@@ -127,8 +106,6 @@ func CircleMoviment(_value):# _value / valor /
     else: MyTexture.flip_v = false #SE NÃO, ele é desativado
 
     look_at(Player_Postion) #giro na direção do player
-
-    #endregion
 
 ################################################################################
 

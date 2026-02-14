@@ -1,16 +1,30 @@
-[gd_scene load_steps=13 format=4 uid="uid://yuw8ty4qni6i"]
+[gd_scene load_steps=15 format=4 uid="uid://yuw8ty4qni6i"]
 
 [ext_resource type="TileSet" uid="uid://1s707n68byqp" path="res://Worlds/tiles/1_world.tres" id="1_m4dxa"]
 [ext_resource type="Script" uid="uid://bmo70jsanelwe" path="res://Characters/Scripts/Camera.gd" id="2_7jtqy"]
 [ext_resource type="PackedScene" uid="uid://dmtl1waqweci7" path="res://Characters/cines/player_body.tscn" id="2_s8sl4"]
 [ext_resource type="PackedScene" uid="uid://b4rgxx3biwmm5" path="res://Characters/cines/maça.tscn" id="3_7jtqy"]
 [ext_resource type="PackedScene" uid="uid://caegqk04ioy56" path="res://Characters/cines/Weapons/double_pistol.tscn" id="4_afuis"]
+[ext_resource type="PackedScene" uid="uid://blphe5l6isw5x" path="res://Characters/cines/bar_life.tscn" id="4_mlg53"]
 [ext_resource type="PackedScene" uid="uid://c07rbei4fmklc" path="res://Characters/cines/Weapons/cajado_vermelho.tscn" id="5_3803g"]
 [ext_resource type="PackedScene" uid="uid://c7pb8a4cumr27" path="res://Characters/cines/Weapons/Basic_Pistol.tscn" id="6_m4yvn"]
 [ext_resource type="PackedScene" uid="uid://bb27voy3dtvbf" path="res://Characters/cines/Weapons/cajado_azul.tscn" id="7_mlg53"]
 [ext_resource type="PackedScene" uid="uid://dbrg3bafyvxoa" path="res://Characters/cines/Weapons/cajado_verde.tscn" id="8_dkjyc"]
 [ext_resource type="PackedScene" uid="uid://giu8lit01pvb" path="res://Characters/cines/Weapons/bazuca.tscn" id="9_m4yvn"]
 [ext_resource type="PackedScene" uid="uid://dvrw7o6fjbjv6" path="res://Characters/cines/HUD.tscn" id="11_m4yvn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dkjyc"]
+resource_local_to_scene = true
+bg_color = Color(0.34765625, 0.01628526, 0.22250584, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.16796875, 0.030626265, 0.13186091, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
 
 [sub_resource type="Environment" id="Environment_3803g"]
 resource_local_to_scene = true
@@ -81,6 +95,18 @@ y_sort_enabled = true
 
 [node name="Maça" parent="Characters/Enemies" instance=ExtResource("3_7jtqy")]
 position = Vector2(-518, -536)
+Enemie_life = 200
+
+[node name="BarLife" parent="Characters/Enemies/Maça" node_paths=PackedStringArray("Daddy") instance=ExtResource("4_mlg53")]
+offset_left = -37.391304
+offset_top = -45.434784
+offset_right = 37.608696
+offset_bottom = -35.434784
+theme_override_font_sizes/font_size = 6
+theme_override_styles/background = SubResource("StyleBoxFlat_dkjyc")
+show_percentage = true
+Daddy = NodePath("..")
+Init_Life = 200
 
 [node name="Pistols" type="Node" parent="Characters"]
 

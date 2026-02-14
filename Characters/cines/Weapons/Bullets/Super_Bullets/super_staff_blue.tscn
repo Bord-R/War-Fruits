@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dnweokegmobs"]
+[gd_scene load_steps=17 format=3 uid="uid://dnweokegmobs"]
 
 [ext_resource type="Script" uid="uid://cl4gm32xheimw" path="res://Characters/Scripts/Weapons_scripts/Bullets_Components/bullet.gd" id="1_vlyrq"]
 [ext_resource type="Shader" uid="uid://dngotvsdxaptf" path="res://Characters/shaders/Shader_Commom.gdshader" id="2_xuu8p"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dpubroe8jpixg" path="res://Characters/Scripts/Weapons_scripts/Bullets_Components/Bullet_Spin_mov.gd" id="6_o1orn"]
 [ext_resource type="Script" uid="uid://dsr2bvynqhw71" path="res://Characters/Scripts/Weapons_scripts/Bullets_Components/Create_effect.gd" id="7_pmx7y"]
 [ext_resource type="PackedScene" uid="uid://dqcuau0vk0g0d" path="res://Characters/cines/Weapons/Bullets/Super_Bullets/Super_Effect/buff_area_effect.tscn" id="8_j0m33"]
+[ext_resource type="PackedScene" uid="uid://bvl250262yo60" path="res://Characters/cines/Weapons/Bullets/Super_Bullets/Super_Effect/heart_effect.tscn" id="9_n6skn"]
 [ext_resource type="Script" uid="uid://dp8ck4ccl3dvc" path="res://Characters/Scripts/Weapons_scripts/Bullets_Components/Bullet_Collided_enemies.gd" id="9_q3xlf"]
 [ext_resource type="Script" uid="uid://lieq52u44q58" path="res://Characters/Scripts/Weapons_scripts/Bullets_Components/Bullet_impulse_mov.gd" id="9_vlyrq"]
 
@@ -171,6 +172,8 @@ metadata/_custom_type_script = "uid://dpubroe8jpixg"
 [node name="CreateEffect" type="Node" parent="."]
 script = ExtResource("7_pmx7y")
 Area = ExtResource("8_j0m33")
+Spike = ExtResource("9_n6skn")
+Interpolate_Radius_Spike = 4.0
 metadata/_custom_type_script = "uid://dsr2bvynqhw71"
 
 [node name="CollidedEnemies" type="Node" parent="."]

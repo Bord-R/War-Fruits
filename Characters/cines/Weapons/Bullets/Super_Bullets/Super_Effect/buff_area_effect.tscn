@@ -299,6 +299,7 @@ _data = {
 }
 
 [node name="BuffAreaEffect" type="Area2D" node_paths=PackedStringArray("Anim")]
+modulate = Color(1, 1, 1, 0.7058824)
 z_index = 1
 script = ExtResource("2_q3hxm")
 Anim = NodePath("Sprite2D/AnimationPlayer")
@@ -320,5 +321,7 @@ autoplay = "start"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.16470589, 0.9098039, 1, 0.5764706)
+shadow_enabled = true
+shadow_color = Color(0, 0, 0.31764707, 0.5294118)
 texture = ExtResource("2_52g83")
 texture_scale = 4.0

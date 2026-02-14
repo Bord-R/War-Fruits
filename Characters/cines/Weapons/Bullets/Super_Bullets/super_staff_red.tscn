@@ -206,6 +206,7 @@ HitBox = NodePath("..")
 Spike = ExtResource("8_qe820")
 Quantity_Spikes = 12
 Mod_Radius_Spikes = 1.5
+Interpolate_Radius_Spike = 1.5
 metadata/_custom_type_script = "uid://dsr2bvynqhw71"
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="queue_free"]

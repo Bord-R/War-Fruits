@@ -23,6 +23,8 @@ class_name CreateEffect #criando efeito
 
 @export var Mod_Radius_Spikes : float = 1.0
 
+@export var Interpolate_Radius_Spike : float = 0.0
+
 #endregion
 
 #region Methods
@@ -86,7 +88,7 @@ func CreateEffect():
 	#SE eu tenho um espinho E eu posso criar um novo espinho
 	if Spike and Game.Is_CreateSpike:
 
-		var _new_Effect_Script = CreateSpike.new(Quantity_Spikes, Spike, Mod_Radius_Spikes) #instancio um createspike com seu dados ja configurados
+		var _new_Effect_Script = CreateSpike.new(Quantity_Spikes, Spike, Mod_Radius_Spikes, Interpolate_Radius_Spike) #instancio um createspike com seu dados ja configurados
 
 		get_parent().MyPlayer.add_child(_new_Effect_Script) #adiciono como filho do player
 

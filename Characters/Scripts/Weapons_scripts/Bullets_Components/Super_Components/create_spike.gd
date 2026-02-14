@@ -14,6 +14,9 @@ var MAX_SPIKES : int = 4
 #variação do raio do filho
 var Mod_Radius : float = 1.5
 
+#raio interpolado
+var Inter_Radius : float = 1.0
+
 #contador
 var Count : int = 1
 
@@ -22,11 +25,13 @@ var Count : int = 1
 #region Methods
 
 #método que rodara quando eu for carregado
-func _init(_qtd_spikes : int, _scene_spike : PackedScene, _m_radius : float):
+func _init(_qtd_spikes : int, _scene_spike : PackedScene, _m_radius : float, _inter_radius : float):
 	
 	MAX_SPIKES = _qtd_spikes #minha quantidade de espinhos é igual a qtd spikes
 
 	Mod_Radius = _m_radius #valor usado para modificar o raio do espinho
+
+	Inter_Radius = _inter_radius #interpolação maxima do meu raio
 
 	Spike = _scene_spike #meu espinho é igual a _scene_spike
 
@@ -57,7 +62,7 @@ func _ready():
 		if _spikes % 2: _create_spike.Radius *= Mod_Radius
 
 		#uso método da instancia para animar ela
-		_create_spike.Interpolate_Radius(1.5, _create_spike.Radius)
+		if Inter_Radius > 0: _create_spike.Interpolate_Radius(Inter_Radius, _create_spike.Radius)
 
 ################################################################################
 
