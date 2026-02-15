@@ -2,12 +2,12 @@
 Conteudos a adicionar:
 
 • Game Over Screen 
-    • Script
+    • Script - feito
     • refinamento
 
 • Supers
-    • Super da bazuca infinalizada
-    • Super dos cajados não feitas
+    • Super da bazuca infinalizada - feito
+    • Super dos cajados não feitas - feito
 
 • Menu de Pause
 
