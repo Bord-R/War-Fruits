@@ -409,7 +409,7 @@ func Enter_text(_text : String):
 		else: #SE NÃO
 
 			#o vel volta a ter seu valor original
-			Player.vel = Player.MAX_VEL
+			Player.vel = Player.VEL_MAX
 
 		Mod_Text(Game.Vel_Active, "I_SHOW_SPEED_MODE")
 

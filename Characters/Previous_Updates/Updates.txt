@@ -9,6 +9,8 @@ Conteudos a adicionar:
     • Super da bazuca infinalizada - feito
     • Super dos cajados não feitas - feito
 
+• Parry e sistema de buffs
+
 • Menu de Pause
 
 • Tela de opções

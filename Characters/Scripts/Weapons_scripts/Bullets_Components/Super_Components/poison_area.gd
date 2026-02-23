@@ -108,7 +108,7 @@ func Final_Stage():
 
 	get_tree().current_scene.remove_child(My_Timer) #removo o timer da scene tree pra não acumular coisa desnecessaria na memória
 	
-	Game.is_CreateArea = true #posso criar uma area novamente
+	Game.Is_CreateArea = true #posso criar uma area novamente
 
 	Swap_Anim("end") #toco "end" (fim)
 

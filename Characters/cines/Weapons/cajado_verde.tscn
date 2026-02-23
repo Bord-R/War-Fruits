@@ -110,7 +110,7 @@ Variant_Damage = Dictionary[String, int]({
 "Max_Damage": 5,
 "Min_Damage": 1
 })
-Buff_Damage = 20
+Buff_Damage = 12
 MAX_DELAY_WEAPON = 2.5
 Knock_bullet = 1.6
 Shake_pistol = 1.25

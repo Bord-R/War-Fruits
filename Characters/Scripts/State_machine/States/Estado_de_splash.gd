@@ -11,8 +11,14 @@ class_name EstadoSplash #estado de splash
 #animation player
 @export var Anim : AnimationPlayer
 
-#constante para a quantidade maxima de possas que eu posso gerar
+#quantidade maxima de possas que eu posso gerar
 @export var QUANTITY_POSS : int = 5
+
+#tamanho das minhas possas
+@export var SCALE_POSS : Array[float] = [1, 1.4]
+
+#valor aleatório
+var _randow_value : float = 0
 
 #endregion
 
@@ -54,6 +60,11 @@ func Animacao_finalizada(_Anim : StringName):
 				
 				Character.position.y + randf_range(-20, 20))
 			
+			_randow_value = randf_range(SCALE_POSS[0], SCALE_POSS[1]) #dou valor aleatório
+
+			#gerando um tamanho aleatorio da possa
+			_Create_poss.scale = Vector2(_randow_value, _randow_value)
+
 			#return #retona caso o loop seja verdadeiro
 		
 		Pai_estados.Troca_Estado(State[0]) #trocando para o estado de guarda

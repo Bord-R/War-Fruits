@@ -86,6 +86,8 @@ func Area_Collided( _area : Area2D):
 			#aplico o dano
 			Aplicate_Damage(Enemy)
 
+			print(Bullet.Damage)
+
 		Auto_Destroy(Destroy_Bool) #destruo o projetil se eu tiver permição
 
 ################################################################################

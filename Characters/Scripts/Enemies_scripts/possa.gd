@@ -22,6 +22,8 @@ var alpha : float = 0.0
 #variavel que definira meu tempo de vida
 var timer_life : float = LIFE_TIMER_MAX
 
+var decresim_vel : float = 0 #velocidade reduzida do player
+
 #endregion
 
 #region Methods
@@ -75,9 +77,11 @@ func _on_body_entered(_body: Node2D) -> void:
 	
 	#SE o nome do corpo que eu colidi for igual "Player_body", eu executo o código
 	if (_body.name == "Player_body"):
-		
-		#a variavel vel max do corpo é reduzida
-		_body.vel *= DECRESIMO
+
+		decresim_vel =_body.VEL_MAX * DECRESIMO #dando um valor a decresim vel
+	
+		#a variavel vel max do player é reduzida
+		_body.vel = decresim_vel
 
 ################################################################################
 
