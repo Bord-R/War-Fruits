@@ -16,9 +16,9 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u40gu"]
 resource_local_to_scene = true
 shader = ExtResource("1_7jyf7")
-shader_parameter/Reducao = 0.2
-shader_parameter/escuridao = Color(0.039215688, 0.07058824, 0.13725491, 1)
-shader_parameter/Varicao = 0.499999988824
+shader_parameter/Reducao = 0.4
+shader_parameter/Cor = Color(0, 0, 0, 1)
+shader_parameter/Alpha_Cor = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yc0xq"]
 
@@ -58,10 +58,9 @@ region = Rect2(0, 110, 0, 110)
 atlas = ExtResource("11_8184t")
 region = Rect2(0, 220, 0, 110)
 
-[node name="Menu" type="CanvasLayer" node_paths=PackedStringArray("BackGroud")]
+[node name="Menu" type="CanvasLayer"]
 follow_viewport_enabled = true
 script = ExtResource("1_u40gu")
-BackGroud = NodePath("BackGroud")
 
 [node name="BackGroud" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_u40gu")
@@ -105,7 +104,7 @@ position = Vector2(-21, -200)
 texture = ExtResource("5_vbfbg")
 
 [node name="BarPlacehonder" type="Sprite2D" parent="."]
-position = Vector2(167, 178)
+position = Vector2(166, 180)
 texture = ExtResource("6_8184t")
 
 [node name="Title" type="Sprite2D" parent="."]

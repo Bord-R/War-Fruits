@@ -1,17 +1,24 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0if04joxed7"]
+[gd_scene load_steps=11 format=3 uid="uid://c0if04joxed7"]
 
 [ext_resource type="Script" uid="uid://pwdernxgceuy" path="res://Worlds/Scripts/game.gd" id="1_33xom"]
 [ext_resource type="PackedScene" uid="uid://cj0a62p7vekax" path="res://Worlds/cines/menu.tscn" id="2_lpukx"]
 [ext_resource type="PackedScene" uid="uid://yuw8ty4qni6i" path="res://Worlds/cines/1_world.tscn" id="3_x0rne"]
 [ext_resource type="Shader" uid="uid://cur5kdo3q4cjg" path="res://Menu/Shaders/BackGroud-Menu.gdshader" id="4_lpukx"]
+[ext_resource type="Shader" uid="uid://dngotvsdxaptf" path="res://Characters/shaders/Shader_Commom.gdshader" id="5_pteo2"]
 [ext_resource type="PackedScene" uid="uid://bkc55urup361x" path="res://Worlds/cines/opções.tscn" id="5_x0rne"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x0rne"]
 resource_local_to_scene = true
 shader = ExtResource("4_lpukx")
 shader_parameter/Reducao = 0.2
-shader_parameter/escuridao = Color(0.039215688, 0.07058824, 0.13725491, 1)
-shader_parameter/Varicao = 0.499999988824
+shader_parameter/Cor = Color(0.13725491, 0.03137255, 0.1764706, 1)
+shader_parameter/Alpha_Cor = 0.7500000111759
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0x1nq"]
+resource_local_to_scene = true
+shader = ExtResource("5_pteo2")
+shader_parameter/flash_cor = Color(1, 0, 0, 1)
+shader_parameter/float_flash = 0.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dkjyc"]
 resource_local_to_scene = true
@@ -69,6 +76,9 @@ material = SubResource("ShaderMaterial_x0rne")
 process_mode = 4
 visible = false
 
+[node name="Texture" parent="1World/Characters/Enemies/maçaBig" index="4"]
+material = SubResource("ShaderMaterial_0x1nq")
+
 [node name="BarLife" parent="1World/Characters/Enemies/maçaBig" index="7"]
 theme_override_styles/background = SubResource("StyleBoxFlat_dkjyc")
 
@@ -80,4 +90,5 @@ visible = false
 
 [editable path="Menu"]
 [editable path="1World"]
+[editable path="1World/Characters/Enemies/maçaBig"]
 [editable path="Opções"]
