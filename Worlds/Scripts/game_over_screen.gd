@@ -41,18 +41,6 @@ var Tween_GameOver
 
 #endregion
 
-#region Methods
-
-#método que rodara quando eu estiver pronto
-func _ready() -> void:
-
-	#conectando o sinal ao método
-	VM.Conected_Signals(Menu_bottom.button_up, _on_menu_button_up)
-
-################################################################################
-
-#endregion
-
 #region My Methods
 
 #meu ciclo de vida
@@ -110,13 +98,6 @@ func Animated_Light():
 
 	#minh luz dramatica roda a animação normal
 	Dramatic_Light.get_child(0).play("fail")
-
-################################################################################
-
-#método que ativa quando o sinal button up for ativado
-func _on_menu_button_up() -> void:
-
-	get_tree().reload_current_scene() #reinicia o game
 
 ################################################################################
 

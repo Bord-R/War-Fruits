@@ -23,6 +23,8 @@ extends Node
 
 @export var Return_menu : Button #Botão de Retornar ao menu
 
+@export var Return_to_Start : MyButton #botão para eu retornar para o inicio do game após o player morrer
+
 @export_category("Others")
 
 #caminho da transição de cena
@@ -79,7 +81,10 @@ var Current_Mode : String = ""
 var IsHUDRemove : bool = false
 
 #variavel que sera usada para eu poder me comunicar com o meu transition scene
-var Transition_Scene_Instance : CanvasLayer = null
+var Trans_Instance : CanvasLayer = null
+
+#variavel que facilitara as chamadas entre eu e o no de animação da minha cena de transição
+var Trans_Anim : AnimationPlayer = null
 
 #endregion
 
@@ -88,7 +93,16 @@ var Transition_Scene_Instance : CanvasLayer = null
 #método que rodara no inicio do game
 func _ready() -> void:
 
+	if Transition_Scene: #SE minha cena de transição existir
+		
+		#instanciando minha cena de transição
+		Trans_Instance = Transition_Scene.instantiate() 
 
+		#pegando o node de animação da minha cena de transição
+		Trans_Anim = Trans_Instance.get_child(-1)
+
+		#adicionando minha cena de transição como minha filha 
+		add_child(Trans_Instance)
 
 	if not Start: return #SE Start NÃO EXISTIR retorna
 
@@ -97,11 +111,16 @@ func _ready() -> void:
 	VM.Conected_Signals(Option.button_up, on_opitions_button_up)
 	VM.Conected_Signals(Quit.button_up, on_quit_button_up)
 	VM.Conected_Signals(Return_menu.button_up, on_return_button_up)
+	VM.Conected_Signals(Return_to_Start.button_up, on_return_to_start_button_up)
 
 ################################################################################
 
 #método que ira notificar se o botão "Start" foi pressionado
 func on_start_button_up() -> void:
+
+	Trans_Anim.play("trans_in") #toca a animação de transição
+
+	await Trans_Anim.animation_finished #espera a animação de transição acabar
 
 	#mudando o tipo de processamento do primeiro o mundo
 	P_World.process_mode = Node.PROCESS_MODE_INHERIT
@@ -118,22 +137,34 @@ func on_start_button_up() -> void:
 	#ele deixa de ser visivel
 	Menu.visible = false
 
+	Trans_Anim.play("trans_out") #toca a animação de transição para sair
+
 ################################################################################
 
 #método que ira notificar se o botão "Opitions" foi pressionado
 func on_opitions_button_up():
 	
+	Trans_Anim.play("trans_in") #toca a animação de transição
+
+	await Trans_Anim.animation_finished #espera a animação de transição acabar
+
 	#as opções ficam visiveis
 	Options.visible = true
 	
 	#meu menu é dasabilitado
 	Menu.process_mode = Node.PROCESS_MODE_DISABLED
 
+	Trans_Anim.play("trans_out") #toca a animação de transição para sair
+
 ################################################################################
 
 #método que ira notificar se o botão "Quit" foi pressionado
 func on_quit_button_up() -> void:
 	
+	Trans_Anim.play("trans_in") #toca a animação de transição
+
+	await Trans_Anim.animation_finished #espera a animação de transição acabar
+
 	#o jogo acaba (:
 	get_tree().quit()
 
@@ -142,8 +173,26 @@ func on_quit_button_up() -> void:
 ###EM DESENVOLVIMENTO
 func on_return_button_up() -> void:
 	
-	Options.visible = false
-	Menu.process_mode = Node.PROCESS_MODE_INHERIT
+	Trans_Anim.play("trans_in") #toca a animação de transição
+
+	await Trans_Anim.animation_finished #espera a animação de transição acabar
+
+	Options.visible = false #as opções ficam invisiveis
+
+	Menu.process_mode = Node.PROCESS_MODE_INHERIT #meu menu é processado
+
+	Trans_Anim.play("trans_out") #toca a animação de transição para sair
+
+################################################################################
+
+#método que ira notificar se o botão "Return to Start" foi pressionado
+func on_return_to_start_button_up() -> void:
+
+	Trans_Anim.play("trans_in") #toca a animação de transição
+
+	await Trans_Anim.animation_finished #espera a animação de transição acabar
+
+	get_tree().reload_current_scene() #recarrega a cena atual
 
 ################################################################################
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0if04joxed7"]
+[gd_scene load_steps=13 format=3 uid="uid://c0if04joxed7"]
 
 [ext_resource type="Script" uid="uid://pwdernxgceuy" path="res://Worlds/Scripts/game.gd" id="1_33xom"]
 [ext_resource type="PackedScene" uid="uid://b4j3q8sar3v0e" path="res://Worlds/cines/trans_scene.tscn" id="2_0x1nq"]
@@ -34,6 +34,12 @@ expand_margin_top = 1.0
 expand_margin_right = 1.0
 expand_margin_bottom = 1.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fg6n0"]
+resource_local_to_scene = true
+shader = ExtResource("5_pteo2")
+shader_parameter/flash_cor = Color(0.9098039, 0.9098039, 0.9098039, 1)
+shader_parameter/float_flash = 0.0
+
 [sub_resource type="Environment" id="Environment_x0rne"]
 resource_local_to_scene = true
 background_mode = 3
@@ -57,7 +63,7 @@ adjustment_enabled = true
 adjustment_brightness = 0.8
 adjustment_saturation = 1.2
 
-[node name="Game" type="Node" node_paths=PackedStringArray("Menu", "P_World", "Options", "Start", "Option", "Quit", "Return_menu")]
+[node name="Game" type="Node" node_paths=PackedStringArray("Menu", "P_World", "Options", "Start", "Option", "Quit", "Return_menu", "Return_to_Start")]
 script = ExtResource("1_33xom")
 Menu = NodePath("Menu")
 P_World = NodePath("1World")
@@ -66,6 +72,7 @@ Start = NodePath("Menu/Start")
 Option = NodePath("Menu/Opitions")
 Quit = NodePath("Menu/Quit")
 Return_menu = NodePath("Opções/Button")
+Return_to_Start = NodePath("1World/Characters/Player_body/GameOverScreen/Menu")
 Transition_Scene = ExtResource("2_0x1nq")
 
 [node name="Menu" parent="." instance=ExtResource("2_lpukx")]
@@ -84,6 +91,9 @@ material = SubResource("ShaderMaterial_0x1nq")
 [node name="BarLife" parent="1World/Characters/Enemies/maçaBig" index="7"]
 theme_override_styles/background = SubResource("StyleBoxFlat_dkjyc")
 
+[node name="texture" parent="1World/Characters/Player_body" index="5"]
+material = SubResource("ShaderMaterial_fg6n0")
+
 [node name="WorldEnvironment" parent="1World" index="4"]
 environment = SubResource("Environment_x0rne")
 
@@ -93,4 +103,6 @@ visible = false
 [editable path="Menu"]
 [editable path="1World"]
 [editable path="1World/Characters/Enemies/maçaBig"]
+[editable path="1World/Characters/Player_body"]
+[editable path="1World/Characters/Player_body/GameOverScreen"]
 [editable path="Opções"]
