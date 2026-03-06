@@ -2,11 +2,15 @@ extends Node
 
 #region Variables
 
+@export_group("Nodes") #meus nodes
+
 #exportando o menu
 @export var Menu : CanvasLayer
 
 #exportando o primeiro mundo
 @export var P_World : Node2D
+
+@export_group("Buttons") #meus botões
 
 #exportando o menu de opções
 @export var Options : CanvasLayer
@@ -18,6 +22,11 @@ extends Node
 @export var Quit : MyButton #Botão de Sair
 
 @export var Return_menu : Button #Botão de Retornar ao menu
+
+@export_category("Others")
+
+#caminho da transição de cena
+@export var Transition_Scene : PackedScene = null
 
 #minha quantidade maxima de super
 const MAX_SUPER_BONUS : int = 8
@@ -69,12 +78,17 @@ var Current_Mode : String = ""
 #variavel que avisara se eu posso tirar a hud 
 var IsHUDRemove : bool = false
 
+#variavel que sera usada para eu poder me comunicar com o meu transition scene
+var Transition_Scene_Instance : CanvasLayer = null
+
 #endregion
 
 #region Methods
 
 #método que rodara no inicio do game
 func _ready() -> void:
+
+
 
 	if not Start: return #SE Start NÃO EXISTIR retorna
 
@@ -84,21 +98,20 @@ func _ready() -> void:
 	VM.Conected_Signals(Quit.button_up, on_quit_button_up)
 	VM.Conected_Signals(Return_menu.button_up, on_return_button_up)
 
-
 ################################################################################
 
 #método que ira notificar se o botão "Start" foi pressionado
 func on_start_button_up() -> void:
-	
+
+	#mudando o tipo de processamento do primeiro o mundo
+	P_World.process_mode = Node.PROCESS_MODE_INHERIT
+
 	#deixando o primeiro mundo visivel
 	P_World.visible = true
 	
 	#mudando a visibilidade do node HUD de P_World
 	P_World.get_node("HUD").visible = true
-	
-	#mudando o tipo de processamento do primeiro o mundo
-	P_World.process_mode = Node.PROCESS_MODE_INHERIT
-	
+
 	#meu menu não é processado
 	Menu.process_mode = Node.PROCESS_MODE_DISABLED
 	

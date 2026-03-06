@@ -1,8 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://cj0a62p7vekax"]
+[gd_scene load_steps=23 format=3 uid="uid://cj0a62p7vekax"]
 
 [ext_resource type="Shader" uid="uid://cur5kdo3q4cjg" path="res://Menu/Shaders/BackGroud-Menu.gdshader" id="1_7jyf7"]
 [ext_resource type="Texture2D" uid="uid://m6cb8icuj2b3" path="res://Menu/Sprites/BackGroud-Menu.png" id="1_jdcpi"]
-[ext_resource type="Script" uid="uid://v408pyb2yc1o" path="res://Worlds/Scripts/Menu-Principal.gd" id="1_u40gu"]
 [ext_resource type="Script" uid="uid://1qpvfdonr00t" path="res://Worlds/Scripts/Vines.gd" id="5_8184t"]
 [ext_resource type="Texture2D" uid="uid://k35blhk7o0nh" path="res://Menu/Sprites/Sprite-Vines.png" id="5_vbfbg"]
 [ext_resource type="Texture2D" uid="uid://cntyqjwrntjtu" path="res://Menu/Sprites/Sprite-Bar_menu.png" id="6_8184t"]
@@ -60,7 +59,6 @@ region = Rect2(0, 220, 0, 110)
 
 [node name="Menu" type="CanvasLayer"]
 follow_viewport_enabled = true
-script = ExtResource("1_u40gu")
 
 [node name="BackGroud" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_u40gu")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0if04joxed7"]
+[gd_scene load_steps=12 format=3 uid="uid://c0if04joxed7"]
 
 [ext_resource type="Script" uid="uid://pwdernxgceuy" path="res://Worlds/Scripts/game.gd" id="1_33xom"]
+[ext_resource type="PackedScene" uid="uid://b4j3q8sar3v0e" path="res://Worlds/cines/trans_scene.tscn" id="2_0x1nq"]
 [ext_resource type="PackedScene" uid="uid://cj0a62p7vekax" path="res://Worlds/cines/menu.tscn" id="2_lpukx"]
 [ext_resource type="PackedScene" uid="uid://yuw8ty4qni6i" path="res://Worlds/cines/1_world.tscn" id="3_x0rne"]
 [ext_resource type="Shader" uid="uid://cur5kdo3q4cjg" path="res://Menu/Shaders/BackGroud-Menu.gdshader" id="4_lpukx"]
@@ -65,6 +66,7 @@ Start = NodePath("Menu/Start")
 Option = NodePath("Menu/Opitions")
 Quit = NodePath("Menu/Quit")
 Return_menu = NodePath("Opções/Button")
+Transition_Scene = ExtResource("2_0x1nq")
 
 [node name="Menu" parent="." instance=ExtResource("2_lpukx")]
 follow_viewport_enabled = false
