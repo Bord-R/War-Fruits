@@ -50,6 +50,7 @@ folder_colors={
 "res://Characters/cines/": "green",
 "res://Characters/cines/Weapons/": "red",
 "res://Characters/shaders/": "gray",
+"res://Characters/sounds/": "purple",
 "res://Menu/": "blue",
 "res://Menu/Shaders/": "pink",
 "res://Menu/Sprites/": "gray",

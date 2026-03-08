@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://dmtl1waqweci7"]
+[gd_scene load_steps=21 format=3 uid="uid://dmtl1waqweci7"]
 
 [ext_resource type="Texture2D" uid="uid://3xebnmaobpwl" path="res://Characters/Sprites/Player/Sprite-player.png" id="1_koxc6"]
 [ext_resource type="Script" uid="uid://csragjh0jf3tg" path="res://Characters/Scripts/player_body.gd" id="1_nq0r2"]
+[ext_resource type="AudioStream" uid="uid://bkavquey8n8i5" path="res://Characters/sounds/walk.wav" id="2_hsgwf"]
 [ext_resource type="Texture2D" uid="uid://b74nn5ugvt2mb" path="res://Characters/Sprites/Sprite-shadow.png" id="2_sshsc"]
 [ext_resource type="Shader" uid="uid://dngotvsdxaptf" path="res://Characters/shaders/Shader_Commom.gdshader" id="3_bh83f"]
 [ext_resource type="FontFile" uid="uid://bw0xo6e1h53n7" path="res://Characters/Fonts/2.png" id="5_sshsc"]
@@ -131,6 +132,18 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -7)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_qm41i"]
@@ -370,6 +383,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(0, -7)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(2),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_p1wde"]
 resource_name = "zombie"
@@ -472,7 +497,6 @@ Shadow = NodePath("shadow")
 BackGroud_Fake = NodePath("BackGroudFake")
 GameMode = NodePath("GameMode")
 Game_Over_Screen = NodePath("GameOverScreen")
-metadata/_custom_type_script = "uid://cx3205vdebic0"
 
 [node name="Carregador" type="Area2D" parent="."]
 visible = false
@@ -510,6 +534,11 @@ offset_right = 615.0
 offset_bottom = 346.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_hsgwf")
+volume_db = -6.902
+playback_type = 1
 
 [node name="shadow" type="Sprite2D" parent="."]
 z_index = 1
