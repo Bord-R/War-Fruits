@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://dmtl1waqweci7"]
+[gd_scene load_steps=22 format=3 uid="uid://dmtl1waqweci7"]
 
 [ext_resource type="Texture2D" uid="uid://3xebnmaobpwl" path="res://Characters/Sprites/Player/Sprite-player.png" id="1_koxc6"]
 [ext_resource type="Script" uid="uid://csragjh0jf3tg" path="res://Characters/Scripts/player_body.gd" id="1_nq0r2"]
 [ext_resource type="AudioStream" uid="uid://bkavquey8n8i5" path="res://Characters/sounds/walk.wav" id="2_hsgwf"]
 [ext_resource type="Texture2D" uid="uid://b74nn5ugvt2mb" path="res://Characters/Sprites/Sprite-shadow.png" id="2_sshsc"]
+[ext_resource type="Script" uid="uid://qyujruq3r7lp" path="res://Characters/Scripts/Sounds_scripts/SoundEffect.gd" id="3_6ncx7"]
 [ext_resource type="Shader" uid="uid://dngotvsdxaptf" path="res://Characters/shaders/Shader_Commom.gdshader" id="3_bh83f"]
 [ext_resource type="FontFile" uid="uid://bw0xo6e1h53n7" path="res://Characters/Fonts/2.png" id="5_sshsc"]
 [ext_resource type="PackedScene" uid="uid://chw36pjsrw4qq" path="res://Worlds/cines/GameOverScreen.tscn" id="6_bh83f"]
@@ -136,7 +137,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/9/path = NodePath("SoundEffect:playing")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -383,15 +384,29 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(0, -7)]
 }
-tracks/3/type = "value"
+tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/3/path = NodePath("SoundEffect")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Randomize_Sound"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SoundEffect:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
@@ -535,10 +550,16 @@ offset_bottom = 346.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="SoundEffect" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_hsgwf")
-volume_db = -6.902
-playback_type = 1
+volume_db = 9.851
+pitch_scale = 0.7
+script = ExtResource("3_6ncx7")
+Max_Db = 9.85
+Min_Db = -5.73
+Max_Pitch = 1.5
+Min_Pitch = 0.75
+metadata/_custom_type_script = "uid://qyujruq3r7lp"
 
 [node name="shadow" type="Sprite2D" parent="."]
 z_index = 1
