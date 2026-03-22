@@ -79,7 +79,8 @@ func _physics_process(_delta: float) -> void:
 	if Game.Player_Dead: #SE o player estiver morto
 		Anim.play("destroy") #toco destroy
 		Game.Is_CreateSpike = true #posso criar novos espinhos
-		return #retorna
+		await Anim.animation_finished #espero a animação acabar
+		queue_free() #me deleto
 
 ################################################################################
 

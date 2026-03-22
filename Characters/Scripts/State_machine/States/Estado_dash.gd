@@ -17,16 +17,16 @@ class_name EstadoDash #estado de Dash
 @export var Frame_Ghost : int
 
 #velocidade maxima do dash
-const DASH_VEL_MAX : float = 3.0
+@export_range(2.0, 10.0, 0.5) var Dash_Vel_Max : float = 3.0
 
-#zero
-const VALOR_MINIMO : float = 0.2
+#velocidade minima para comparação
+const MIN_VEL : float = 0.2
 
 #direção do dash
 var Dash_direction : Vector2
 
 #velocidade do dash
-var Dash_vel : float = DASH_VEL_MAX
+var Dash_vel : float = Dash_Vel_Max
 
 #tempo para criar um Effect dash
 var Seg : float = 0.125
@@ -48,7 +48,7 @@ func Entrada():
 	Pai_estados.Anim_nome = "Preatk"
 	
 	#garantindo que o delay_vel volte a ter seu valor original
-	Dash_vel = DASH_VEL_MAX
+	Dash_vel = Dash_Vel_Max
 	
 	#fazendo o dash direction ter seu valor original
 	Dash_direction = Vector2.ZERO
@@ -81,13 +81,13 @@ func Atualizacao_Fisica(_delta : float):
 	
 	#SE o Dash_vel for maior que VALOR_MINIMO E dash direction for igual a um vetor zerado,
 	#eu executo o código
-	if Dash_vel > VALOR_MINIMO and Dash_direction != Vector2.ZERO:
+	if Dash_vel > MIN_VEL and Dash_direction != Vector2.ZERO:
 		
 		#diminuindo o dash vel
 		Dash_vel -= VM.MINOS_TIMER
 	
 	#SE NÃO, SE o dash vel for menor que VALOR_MINIMO, eu executo o código
-	elif Dash_vel < VALOR_MINIMO:
+	elif Dash_vel < MIN_VEL:
 		
 		#trocando o estado para o estado de splash
 		Pai_estados.Troca_Estado(State[0])

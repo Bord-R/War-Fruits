@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b4rgxx3biwmm5"]
+[gd_scene load_steps=25 format=3 uid="uid://b4rgxx3biwmm5"]
 
 [ext_resource type="Script" uid="uid://wehpyln13fd7" path="res://Characters/Scripts/Enemies_scripts/maça.gd" id="1_xp5sn"]
 [ext_resource type="Texture2D" uid="uid://b74nn5ugvt2mb" path="res://Characters/Sprites/Sprite-shadow.png" id="2_s5tiy"]
@@ -344,9 +344,6 @@ _data = {
 &"Walk": SubResource("Animation_kvp6a")
 }
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xp5sn"]
-polygon = PackedVector2Array(-13.996218, 16.000216, 13.829868, 16.000216, 15.578039, 14.261062, 15.605162, 9.0436, 13.010027, 6.434869, 15.632283, 3.8261375, 15.663926, -2.2609005, 13.073313, -5.73921, 9.608613, -8.34794, 5.265307, -9.217518, 4.4138236, -12.695826, 1.8186889, -15.304556, -2.5291371, -15.304556, -6.0254793, -11.826248, -6.043561, -8.34794, -9.521821, -8.34794, -15.64494, -1.391325, -15.672063, 3.8261375, -13.076929, 6.434869, -15.699184, 9.0436, -15.7217865, 13.391484)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7j8p"]
 size = Vector2(26.956524, 19.130436)
 
@@ -362,7 +359,7 @@ Maquina_estados = NodePath("MaçaEstados")
 Area = NodePath("Hit")
 FOLLOW_DISTANCE = 250.0
 Enemie_life = 60
-Enemie_vel = 20.0
+Enemie_vel = 40.0
 metadata/_custom_type_script = "uid://0yc5gc8nbm7k"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -396,9 +393,6 @@ vframes = 3
 libraries = {
 &"": SubResource("AnimationLibrary_gb2bb")
 }
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Texture"]
-occluder = SubResource("OccluderPolygon2D_xp5sn")
 
 [node name="Hit" type="Area2D" parent="."]
 collision_layer = 3
@@ -446,6 +440,7 @@ Anim = NodePath("../../Texture/AnimationPlayer")
 Area2d = NodePath("../../Hit")
 Sprite2d = NodePath("../../Texture")
 Frame_Ghost = 20
+Dash_Vel_Max = 5.0
 Character = NodePath("../..")
 State = Array[String](["EstadoSplash"])
 metadata/_custom_type_script = "uid://2e8xh4ynug5v"

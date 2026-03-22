@@ -24,7 +24,7 @@ const DANOALTO = 5.0
 @export var Particle : PackedScene
 
 #escala da particula
-@export var Scale_particle : Vector2 = Vector2(1.0, 1.0)
+@export var Scale_particle : Vector2 = Vector2(1.5, 1.5)
 
 #boleano que vereficara se eu vou usar o método Color damage
 @export var Bool_color : bool = false

@@ -5,9 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://6aeke02umjjw" path="res://Characters/cines/Weapons/Bullets/Bullet.tscn" id="2_hsps5"]
 [ext_resource type="PackedScene" uid="uid://b0capeufkqh1m" path="res://Characters/cines/Weapons/Bullets/Super_Bullets/super_bullet.tscn" id="3_vubra"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ap318"]
-radius = 14.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_vubra"]
 atlas = ExtResource("2_78qm1")
 region = Rect2(192, 32, 32, 32)
@@ -77,6 +74,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ap318"]
+radius = 14.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnjv1"]
 size = Vector2(29, 9)
 
@@ -105,14 +105,10 @@ Glow_anim = &"glow"
 Use_anim = &"use"
 Anim = NodePath("AnimatedSprite2D")
 Collision = NodePath("CollisionShape2D")
-Ray = NodePath("AnimatedSprite2D/RayCast2D")
-Area = NodePath("AnimatedSprite2D/Area2D")
-Marker = NodePath("AnimatedSprite2D/Marker2D")
+Ray = NodePath("RayCast2D")
+Area = NodePath("Area2D")
+Marker = NodePath("Marker2D")
 metadata/_custom_type_script = "uid://b7crhf3qe5rfq"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(52, 0)
-shape = SubResource("CircleShape2D_ap318")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(53, 0)
@@ -121,17 +117,21 @@ animation = &"glow"
 frame = 6
 frame_progress = 0.6239527
 
-[node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
-position = Vector2(-52, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(52, 0)
+shape = SubResource("CircleShape2D_ap318")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
-position = Vector2(51, 0)
-shape = SubResource("RectangleShape2D_nnjv1")
-
-[node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D"]
-position = Vector2(-15, 0)
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(38, 0)
 target_position = Vector2(29, 0)
 hit_from_inside = true
 
-[node name="Marker2D" type="Marker2D" parent="AnimatedSprite2D"]
-position = Vector2(14, 0)
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(67, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(51, 0)
+shape = SubResource("RectangleShape2D_nnjv1")

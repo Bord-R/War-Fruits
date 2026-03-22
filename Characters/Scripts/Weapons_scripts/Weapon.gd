@@ -149,8 +149,8 @@ var Tween_pistol_fire
 #método que ira rodar no inicio do game
 func _ready() -> void:
 	
-	#não sou carregado
-	visible = false
+	#sou descarregado quando a cena é carregada
+	Carregar_Descarregar(false)
 	
 	#desativando a minha colisão
 	Collision.disabled = true
@@ -203,7 +203,7 @@ func _physics_process(_delta: float) -> void:
 func Area_ativada(_area : Area2D): #parametro para se referir a area que eu colidi
 	
 	#SE o nome da area for igual a "Carregador", eu sou carregado
-	if _area.name == "Carregador": visible = true
+	if _area.name == "Carregador": Carregar_Descarregar(true) #chama o método de me carregar
 	
 	#SE o nome da area em que eu colidi for igual a "Player", eu
 	if _area.name == "Player":
@@ -229,7 +229,26 @@ func Area_ativada(_area : Area2D): #parametro para se referir a area que eu coli
 func Area_desativada(_area : Area2D): #parametro para se refereir a area que eu deixei de colidir
 	
 	#SE o nome da area for igual a carregador, eu deixo de ser carregado
-	if _area.name == "Carregador": visible = false 
+	if _area.name == "Carregador": Carregar_Descarregar(false) #chama o método de me descarregar
+
+################################################################################
+
+#método que ira me carregar e descarregar
+func Carregar_Descarregar(_load : bool):
+	
+	if not _load: #SE eu NÃO estou sendo carregado
+
+		Anim.process_mode = Node.PROCESS_MODE_DISABLED #minha animação deixa de processada
+		Collision.process_mode = Node.PROCESS_MODE_DISABLED #minha colisão deixa de processada
+		Ray.process_mode = Node.PROCESS_MODE_DISABLED #meu ray deixa de processada
+		Marker.process_mode = Node.PROCESS_MODE_DISABLED #meu marker deixa de processada
+
+		return #retorna caso eu NÃO esteja sendo carregado
+
+	Anim.process_mode = Node.PROCESS_MODE_INHERIT #minha animação é processada
+	Collision.process_mode = Node.PROCESS_MODE_INHERIT #minha colisão é processada
+	Ray.process_mode = Node.PROCESS_MODE_INHERIT #meu ray é processada
+	Marker.process_mode = Node.PROCESS_MODE_INHERIT #meu marker é process
 
 ################################################################################
 

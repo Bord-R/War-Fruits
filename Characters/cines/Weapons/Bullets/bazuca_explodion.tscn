@@ -198,6 +198,7 @@ script = ExtResource("3_0ttdi")
 Restriction_State = false
 Destroy_Bool = false
 Shake = 3.0
+Is_FireEffect = false
 metadata/_custom_type_script = "uid://dp8ck4ccl3dvc"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

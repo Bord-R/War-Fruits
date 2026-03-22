@@ -88,10 +88,10 @@ Variant_Damage = Dictionary[String, int]({
 })
 Buff_Damage = 7
 MAX_DELAY_WEAPON = 1.0
-Knock_bullet = 0.2
+Knock_bullet = 2.5
 Quantity_Super = 2
-Shake_pistol = 2.5
-Vel_bullet = 1.25
+Shake_pistol = 2.8
+Vel_bullet = 2.5
 Glow_anim = &"glow"
 Use_anim = &"use"
 Anim = NodePath("AnimatedSprite2D")

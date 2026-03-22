@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://chw36pjsrw4qq" path="res://Worlds/cines/GameOverScreen.tscn" id="6_bh83f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sshsc"]
-size = Vector2(1435, 808)
+size = Vector2(835.5, 540)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nq0r2"]
 size = Vector2(17, 16)
@@ -514,7 +514,6 @@ GameMode = NodePath("GameMode")
 Game_Over_Screen = NodePath("GameOverScreen")
 
 [node name="Carregador" type="Area2D" parent="."]
-visible = false
 position = Vector2(1, -2)
 collision_layer = 7
 collision_mask = 7
