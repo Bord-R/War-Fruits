@@ -62,6 +62,8 @@ var Possui_arma : bool = false
 #minha arma atual
 @onready var Pistol_atual 
 
+@export_group("Nodes") #meus nós
+
 #meu animationplayer
 @export var animate : AnimationPlayer
 
@@ -85,6 +87,10 @@ var Possui_arma : bool = false
 
 #tela de game over
 @export var Game_Over_Screen : Node2D
+
+@export_group("Scenes")
+
+@export var Smoke : PackedScene
 
 #vida do jogador
 var Player_life : int = 0
@@ -445,6 +451,19 @@ func GameOver_on(_active : bool):
 
 		#inicio o ciclo de vida da tela de game over
 		Game_Over_Screen.Cicle_Life()
+
+################################################################################
+
+#método que criara uma fumaça quando eu estiver na animação de andar
+func CreateSmokeInWalk():
+
+	var _new_smoke : Node2D = Smoke.instantiate() #instanciando "fumaça"
+
+	_new_smoke.global_position = global_position #ela nasce na minha posição
+
+	_new_smoke.get_child(0).emitting = true #ela é emitida
+
+	get_tree().current_scene.add_child(_new_smoke) #adiciono ela como filha da cena atual
 
 ################################################################################
 

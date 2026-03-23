@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://dmtl1waqweci7"]
+[gd_scene load_steps=23 format=3 uid="uid://dmtl1waqweci7"]
 
 [ext_resource type="Texture2D" uid="uid://3xebnmaobpwl" path="res://Characters/Sprites/Player/Sprite-player.png" id="1_koxc6"]
 [ext_resource type="Script" uid="uid://csragjh0jf3tg" path="res://Characters/Scripts/player_body.gd" id="1_nq0r2"]
 [ext_resource type="AudioStream" uid="uid://bkavquey8n8i5" path="res://Characters/sounds/walk.wav" id="2_hsgwf"]
+[ext_resource type="PackedScene" uid="uid://trsunrsp1fm7" path="res://Characters/cines/EffectsParticles/smoke_walk_particles.tscn" id="2_p1wde"]
 [ext_resource type="Texture2D" uid="uid://b74nn5ugvt2mb" path="res://Characters/Sprites/Sprite-shadow.png" id="2_sshsc"]
 [ext_resource type="Script" uid="uid://qyujruq3r7lp" path="res://Characters/Scripts/Sounds_scripts/SoundEffect.gd" id="3_6ncx7"]
 [ext_resource type="Shader" uid="uid://dngotvsdxaptf" path="res://Characters/shaders/Shader_Commom.gdshader" id="3_bh83f"]
@@ -410,6 +411,20 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"CreateSmokeInWalk"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_p1wde"]
 resource_name = "zombie"
@@ -512,6 +527,7 @@ Shadow = NodePath("shadow")
 BackGroud_Fake = NodePath("BackGroudFake")
 GameMode = NodePath("GameMode")
 Game_Over_Screen = NodePath("GameOverScreen")
+Smoke = ExtResource("2_p1wde")
 
 [node name="Carregador" type="Area2D" parent="."]
 position = Vector2(1, -2)
