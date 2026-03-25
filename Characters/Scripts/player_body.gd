@@ -88,11 +88,8 @@ var Possui_arma : bool = false
 #tela de game over
 @export var Game_Over_Screen : Node2D
 
-@export_group("Scenes")
-
-@export var Smoke : PackedScene #cena da fumaça
-
-var smoke_Instance : Node2D = null #instanicia da fumaça
+#efeito de fumaça
+@export var Smoke : GPUParticles2D
 
 #vida do jogador
 var Player_life : int = 0
@@ -132,8 +129,6 @@ var Tween_Backfade : Tween
 func _ready() -> void:
 
 	VM.Conected_Signals(gameover, GameOver_on) #conecto meu sinal ao meu método
-
-	CreateSmokeInWalk() #instanciando fumaça
 
 	#meu loader começa a monitorar
 	Loader.monitorable = true
@@ -214,6 +209,8 @@ func movimentacao():
 			#minha movimentação vai ser acelerada
 			velocity = lerp(velocity, direction.normalized() * vel, ACELERACAO)
 			
+			Smoke.emitting = true #emito a fumaça
+
 			#minha animação é tocada 
 			animação("walk")
 			
@@ -222,6 +219,8 @@ func movimentacao():
 		#minha movimentação vai ser desacelerada
 		velocity = lerp(velocity, direction.normalized() * vel, DESACELERACAO)
 		
+		Smoke.emitting = false #deixo de emitir
+
 		#minha animação é tocada 
 		animação("idle")
 
@@ -455,23 +454,6 @@ func GameOver_on(_active : bool):
 
 		#inicio o ciclo de vida da tela de game over
 		Game_Over_Screen.Cicle_Life()
-
-################################################################################
-
-#método que instanciara a fumaça 
-func CreateSmokeInWalk():
-
-	smoke_Instance = Smoke.instantiate() #instanciando "fumaça"
-
-	smoke_Instance.global_position = global_position #ela nasce na minha posição
-
-	call_deferred("add_child", smoke_Instance) #adiciono ela como filha da cena atual
-
-################################################################################
-
-#método que emitira ou não a fumaça
-func EmittingYN(_can_emitting : bool):
-	smoke_Instance.get_child(0).emitting = _can_emitting #minha fumaça é emitida depedendo do valor do parâmetro
 
 ################################################################################
 
